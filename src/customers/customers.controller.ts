@@ -1,14 +1,18 @@
 import {
   Controller,
+  Body,
+  Param,
+  Query,
   Get,
   Post,
-  Body,
   Patch,
-  Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { FindCustomersQueryDto } from './dto/find-customers-query.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Controller('customers')
@@ -21,13 +25,13 @@ export class CustomersController {
   }
 
   @Get()
-  findAll() {
-    return this.customersService.findAll();
+  findAll(@Query() findCustomersQueryDto: FindCustomersQueryDto) {
+    return this.customersService.findAll(findCustomersQueryDto);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.customersService.findOne(+id);
+    return this.customersService.findOne(id);
   }
 
   @Patch(':id')
@@ -35,11 +39,12 @@ export class CustomersController {
     @Param('id') id: string,
     @Body() updateCustomerDto: UpdateCustomerDto,
   ) {
-    return this.customersService.update(+id, updateCustomerDto);
+    return this.customersService.update(id, updateCustomerDto);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.customersService.remove(+id);
+  async remove(@Param('id') id: string) {
+    await this.customersService.remove(id);
   }
 }
