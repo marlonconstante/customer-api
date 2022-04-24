@@ -1,5 +1,11 @@
 import { Type } from 'class-transformer';
-import { IsString, IsEmail, IsDate, IsNotEmpty } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsEmail,
+  IsDate,
+  MaxDate,
+} from 'class-validator';
 
 export class CreateCustomerDto {
   @IsString()
@@ -10,6 +16,7 @@ export class CreateCustomerDto {
   @IsNotEmpty()
   email: string;
 
+  @MaxDate(new Date())
   @IsDate()
   @Type(() => Date)
   birthDate: Date;
