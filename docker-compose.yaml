@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.2-alpine3.15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  api:
+    build: .
+    command: sh -c "yarn && yarn prisma migrate deploy && yarn start:dev"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/builders?schema=public
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/api
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  db:
+    driver: local
