@@ -1,0 +1,26 @@
+###
+POST http://localhost:3000/api/customers
+Content-Type: application/json
+
+{
+  "name": "Marlon Constante",
+  "email": "marlon.constante@gmail.com",
+  "birthDate": "1986-08-18"
+}
+
+###
+GET http://localhost:3000/api/customers?page=1&size=10&name=Constante&email=marlon.constante@gmail.com&birthDate=1986-08-18
+
+###
+GET http://localhost:3000/api/customers/fe8173e9-6929-4f9b-82f0-488306e5cf5c
+
+###
+PATCH http://localhost:3000/api/customers/fe8173e9-6929-4f9b-82f0-488306e5cf5c
+Content-Type: application/json
+
+{
+  "name": "Marlon Constante"
+}
+
+###
+DELETE http://localhost:3000/api/customers/fe8173e9-6929-4f9b-82f0-488306e5cf5c

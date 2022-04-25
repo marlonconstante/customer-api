@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "c630c482-dc65-40dd-a943-dfd9d718fb35",
+		"name": "Customer API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marlon Constante\",\n    \"email\": \"marlon.constante@gmail.com\",\n    \"birthDate\": \"1986-08-18\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}",
+					"host": [
+						"{{baseURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?page=1&size=10",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "name",
+							"value": "Constante",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "marlon.constante@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "birthDate",
+							"value": "1986-08-18",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marlon Constante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3000/api/customers",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "fe8173e9-6929-4f9b-82f0-488306e5cf5c",
+			"type": "string"
+		}
+	]
+}
