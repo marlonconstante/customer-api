@@ -1,12 +1,12 @@
 import { CreateCustomerDto } from '../dto/create-customer.dto';
-import { FindCustomersQueryDto } from '../dto/find-customers-query.dto';
+import { FindCustomersDto } from '../dto/find-customers.dto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
 import { Customer } from '../entities/customer.entity';
 
 export interface CustomersRepository {
   create(createCustomerDto: CreateCustomerDto): Promise<Customer>;
 
-  findAll(findCustomersQueryDto: FindCustomersQueryDto): Promise<Customer[]>;
+  findAll(findCustomersDto: FindCustomersDto): Promise<Customer[]>;
 
   findOne(id?: string, email?: string): Promise<Customer>;
 

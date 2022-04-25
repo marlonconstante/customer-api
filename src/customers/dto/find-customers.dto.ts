@@ -3,7 +3,7 @@ import { Type } from 'class-transformer';
 import { Min, Max, IsInt } from 'class-validator';
 import { CreateCustomerDto } from './create-customer.dto';
 
-export class FindCustomersQueryDto extends PartialType(CreateCustomerDto) {
+export class FindCustomersDto extends PartialType(CreateCustomerDto) {
   @Min(1)
   @IsInt()
   @Type(() => Number)

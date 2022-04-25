@@ -5,7 +5,7 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { FindCustomersQueryDto } from './dto/find-customers-query.dto';
+import { FindCustomersDto } from './dto/find-customers.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { CustomersRepository } from './repositories/customers.repository';
 
@@ -24,8 +24,8 @@ export class CustomersService {
     return this.customersRepository.create(createCustomerDto);
   }
 
-  findAll(findCustomersQueryDto: FindCustomersQueryDto) {
-    return this.customersRepository.findAll(findCustomersQueryDto);
+  findAll(findCustomersDto: FindCustomersDto) {
+    return this.customersRepository.findAll(findCustomersDto);
   }
 
   async findOne(id: string) {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma';
 import { CustomersRepository } from './customers.repository';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
-import { FindCustomersQueryDto } from '../dto/find-customers-query.dto';
+import { FindCustomersDto } from '../dto/find-customers.dto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
 import { Customer } from '../entities/customer.entity';
 
@@ -16,8 +16,8 @@ export class PrismaCustomersRepository implements CustomersRepository {
       .then((customer) => customer && new Customer(customer));
   }
 
-  findAll(findCustomersQueryDto: FindCustomersQueryDto): Promise<Customer[]> {
-    const { page, size: take, name, email, birthDate } = findCustomersQueryDto;
+  findAll(findCustomersDto: FindCustomersDto): Promise<Customer[]> {
+    const { page, size: take, name, email, birthDate } = findCustomersDto;
     const skip = (page - 1) * take;
 
     return this.prismaService.customer

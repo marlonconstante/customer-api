@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { Injectable } from '@nestjs/common';
 import { CustomersRepository } from './customers.repository';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
-import { FindCustomersQueryDto } from '../dto/find-customers-query.dto';
+import { FindCustomersDto } from '../dto/find-customers.dto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
 import { Customer } from '../entities/customer.entity';
 
@@ -17,10 +17,8 @@ export class InMemoryCustomersRepository implements CustomersRepository {
     return customer;
   }
 
-  async findAll(
-    findCustomersQueryDto: FindCustomersQueryDto,
-  ): Promise<Customer[]> {
-    const { page, size, name, email, birthDate } = findCustomersQueryDto;
+  async findAll(findCustomersDto: FindCustomersDto): Promise<Customer[]> {
+    const { page, size, name, email, birthDate } = findCustomersDto;
 
     return this.customers
       .slice((page - 1) * size, page * size)
