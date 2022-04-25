@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { setupSwagger } from './doc/config';
 import { setupPrisma } from './database/prisma';
 
 async function bootstrap() {
@@ -8,6 +9,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
+  setupSwagger(app);
   await setupPrisma(app);
   await app.listen(3000);
 }
