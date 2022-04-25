@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 export function setupSwagger(app: INestApplication): void {
   const config = new DocumentBuilder()
     .setTitle('Customer API')
-    .setDescription('API REST do cadastro de clientes')
+    .setDescription('REST API for customer registration')
     .setVersion('1.0.0')
     .build();
 
