@@ -46,6 +46,7 @@ describe('CustomersService', () => {
     const customer = await service.create(marlon);
 
     expect(customer.id).toBeDefined();
+    expect(customer.age).toBeDefined();
   });
 
   it('should not be able to create a customer with existing email', async () => {
