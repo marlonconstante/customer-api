@@ -28,9 +28,10 @@ export class Customer {
     return dayjs().diff(this.birthDate, 'year');
   }
 
-  toJSON(): this {
+  toJSON() {
     return {
       ...this,
+      birthDate: dayjs(this.birthDate).toISOString(),
       age: this.age,
     };
   }
