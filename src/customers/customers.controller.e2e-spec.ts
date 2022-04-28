@@ -27,14 +27,14 @@ describe('CustomersController (e2e)', () => {
   beforeEach(async () => {
     repository = new InMemoryCustomersRepository();
 
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const module: TestingModule = await Test.createTestingModule({
       imports: [CustomersModule],
     })
       .overrideProvider('CustomersRepository')
       .useValue(repository)
       .compile();
 
-    app = moduleFixture.createNestApplication();
+    app = module.createNestApplication();
     await app.init();
   });
 
