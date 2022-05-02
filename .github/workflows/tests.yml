@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container: node:16.14.2-alpine3.14
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/builders?schema=public
 
     services:
       db:
@@ -35,8 +37,6 @@ jobs:
 
       - name: Run database migrations
         run: yarn prisma migrate deploy
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@db:5432/builders?schema=public
 
       - name: Run unit tests
         run: yarn test
