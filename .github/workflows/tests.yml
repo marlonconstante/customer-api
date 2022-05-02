@@ -25,7 +25,8 @@ jobs:
 
       - name: Run database migrations
         run: yarn prisma migrate deploy
-        env: DATABASE_URL=postgresql://postgres:postgres@db:5432/builders?schema=public
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@db:5432/builders?schema=public
 
       - name: Run unit tests
         run: yarn test
