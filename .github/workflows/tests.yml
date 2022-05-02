@@ -15,14 +15,14 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Start containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker-compose up -d --build
 
       - name: Run unit tests
-        run: yarn test
+        run: docker-compose run api sh -ci "yarn test"
 
       - name: Run end-to-end tests
-        run: yarn test:e2e
+        run: docker-compose run api sh -ci "yarn test:e2e"
 
       - name: Stop containers
         if: always()
-        run: docker-compose -f "docker-compose.yml" down
+        run: docker-compose down
