@@ -17,6 +17,12 @@ jobs:
       - name: Start containers
         run: docker-compose up -d --build
 
+      - name: Install dependencies
+        run: docker-compose run api sh -ci "yarn"
+
+      - name: Run database migrations
+        run: docker-compose run api sh -ci "yarn prisma migrate deploy"
+
       - name: Run unit tests
         run: docker-compose run api sh -ci "yarn test"
 
