@@ -52,7 +52,7 @@ describe('CustomersService', () => {
   it('should not be able to create a customer with existing email', async () => {
     await service.create(marlon);
 
-    expect(() => service.create(marlon)).rejects.toThrow(
+    await expect(() => service.create(marlon)).rejects.toThrow(
       UnprocessableEntityException,
     );
   });
@@ -82,8 +82,8 @@ describe('CustomersService', () => {
     expect(customer.id).toBe(id);
   });
 
-  it('should not be able to find a customer with non-existent id', () => {
-    expect(() =>
+  it('should not be able to find a customer with non-existent id', async () => {
+    await expect(() =>
       service.findOne('06f5b32c-d653-4f09-b506-9ba6bfa12115'),
     ).rejects.toThrow(NotFoundException);
   });
